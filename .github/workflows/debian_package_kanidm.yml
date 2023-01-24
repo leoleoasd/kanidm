@@ -11,6 +11,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   build-deb-package:
+    name: Build deb packages
     strategy:
       matrix:
         os:
@@ -46,6 +47,24 @@ jobs:
       - name: "Doing the package build"
         run: |
           make -f platform/debian/Makefile debs/all
+      - name: Upload debs
+        uses: actions/upload-artifact@v3
+        with:
+          name: ubuntu-packages
+          path: |
+            target/*.deb
+  upload-to-releases:
+    name: Upload to releases
+    needs: build-deb-package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download previously built debs
+        uses: actions/download-artifact@v3
+        with:
+          name: ubuntu-packages
+      - name: List packages
+        run: |
+          ls target
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"

@@ -45,10 +45,6 @@ jobs:
           toolchain: stable
           override: true
           default: true
-      - uses: jetli/wasm-pack-action@v0.4.0
-        with:
-          # Optional version of wasm-pack to install(eg. 'v0.9.1', 'latest')
-          version: 'latest'
       - name: "Doing the package build"
         run: |
           make -f platform/debian/Makefile debs/all

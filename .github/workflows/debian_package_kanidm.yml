@@ -21,7 +21,10 @@ jobs:
          - debian:11
          - debian:10
     runs-on: ubuntu-latest
-    container: ${{ matrix.image }}
+    container: 
+      image: ${{ matrix.image }}
+      env:
+        DEBIAN_FRONTEND: noninteractive
     steps:
       - name: Checkout
         uses: actions/checkout@v3

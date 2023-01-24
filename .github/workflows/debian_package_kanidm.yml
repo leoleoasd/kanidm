@@ -46,6 +46,8 @@ jobs:
       - name: "Doing the package build"
         run: |
           pwd
+          ls
+          ls ./platform/debian/build_kanidm.sh
           make -f platform/debian/Makefile debs/all
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:

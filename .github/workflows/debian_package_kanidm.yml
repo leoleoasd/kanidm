@@ -25,13 +25,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Install Rust
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
-          override: true
-          default: true
       - name: Update package manager
         run: sudo apt-get update
       - name: Install dependencies
@@ -43,7 +36,14 @@ jobs:
             libssl-dev \
             libsqlite3-dev \
             pkg-config \
-            make
+            make \
+            curl
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+          default: true
       - uses: jetli/wasm-pack-action@v0.4.0
         with:
           # Optional version of wasm-pack to install(eg. 'v0.9.1', 'latest')

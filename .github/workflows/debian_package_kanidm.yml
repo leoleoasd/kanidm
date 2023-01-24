@@ -64,12 +64,12 @@ jobs:
           name: ubuntu-packages
       - name: List packages
         run: |
-          ls target
+          ls
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "latest"
           prerelease: true
           title: "Ubuntu Packages"
-          files: target/*.deb
+          files: *.deb
         if: ${{ github.ref == 'refs/heads/master' }}

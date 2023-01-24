@@ -14,11 +14,6 @@ debs/kanidmd: ## Build the Kanidmd package - make sure you set the environment v
 debs/kanidmd:
 	./platform/debian/build_kanidm.sh kanidmd
 
-.PHONY: debs/kanidm-ssh
-debs/kanidm-ssh: ## Bbuild the Kanidm SSH package - make sure you set the environment variable KANIDM_BUILD_PROFILE
-debs/kanidm-ssh:
-	./platform/debian/build_kanidm.sh kanidm-ssh
-
 .PHONY: debs/kanidm-unixd
 debs/kanidm-unixd: ## Build the Kanidm UNIX tools package (PAM/NSS, unixd and related tools) - make sure you set the environment variable KANIDM_BUILD_PROFILE
 debs/kanidm-unixd:
@@ -26,4 +21,4 @@ debs/kanidm-unixd:
 
 .PHONY: debs/all
 debs/all: ## Build all the .deb packages - make sure you set the environment variable KANIDM_BUILD_PROFILE
-debs/all: debs/kanidmd debs/kanidm debs/kanidm-ssh debs/kanidm-unixd
+debs/all: debs/kanidmd debs/kanidm debs/kanidm-unixd

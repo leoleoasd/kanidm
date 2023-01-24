@@ -45,6 +45,7 @@ jobs:
           version: 'latest'
       - name: "Doing the package build"
         run: |
+          pwd
           make -f platform/debian/Makefile debs/all
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:

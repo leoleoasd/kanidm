@@ -14,11 +14,14 @@ jobs:
     name: Build deb packages
     strategy:
       matrix:
-        os:
-         - ubuntu-22.04
-         - ubuntu-20.04
-         - ubuntu-18.04
-    runs-on: ${{ matrix.os }}
+        image:
+         - ubuntu:22.04
+         - ubuntu:20.04
+         - ubuntu:18.04
+         - debian:11
+         - debian:10
+    runs-on: ubuntu-latest
+    container: ${{ matrix.image }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -34,6 +37,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get install -y \
+            lsb-release \
             libpam0g-dev \
             libudev-dev \
             libssl-dev \

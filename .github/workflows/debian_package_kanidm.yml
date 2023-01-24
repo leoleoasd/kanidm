@@ -71,5 +71,5 @@ jobs:
           automatic_release_tag: "latest"
           prerelease: true
           title: "Ubuntu Packages"
-          files: *.deb
+          files: "*.deb"
         if: ${{ github.ref == 'refs/heads/master' }}
